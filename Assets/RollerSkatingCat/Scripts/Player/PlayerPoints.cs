@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -7,7 +5,8 @@ public class PlayerPoints : MonoBehaviour
 {
     public int TotalPoints;
     public TextMeshProUGUI Count;
-    //public AudioSource ShellPoints;
+    [SerializeField] private AudioClip pointsSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +26,7 @@ public class PlayerPoints : MonoBehaviour
         {
 
             TotalPoints++;
-            //ShellPoints.Play();
+            AudioManager.Instance.PlaySound(pointsSound);
             collision.gameObject.SetActive(false);
             Count.text = "" + TotalPoints;
         }
