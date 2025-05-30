@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Health
   - Point
+  - Bullet
   layers:
   - Default
   - TransparentFX

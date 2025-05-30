@@ -7,7 +7,7 @@ public class Bat : Enemy
     private void Awake()
     {
         enemyName = "Murciélago";
-        health = 15;
+        maxHealth = 15;
     }
     void Start()
     {
@@ -23,17 +23,17 @@ public class Bat : Enemy
 
     void PatrollFlying()
     {
-
+        //PatrullajeNormal
     }
 
     void Sleeping()
     {
-
+        //No se inicia el patrullaje
     }
 
     void AttackMode()
     {
-
+        //Persigue al jugador
     }
 
 }

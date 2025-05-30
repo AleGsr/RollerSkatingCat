@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 158454112509744129}
   - component: {fileID: 4634470281925822248}
   - component: {fileID: 3018874191377927412}
-  - component: {fileID: 5884917911599792883}
   - component: {fileID: 4289410018146357624}
+  - component: {fileID: 4040615121820683374}
   m_Layer: 0
   m_Name: Roxanne
   m_TagString: Untagged
@@ -127,10 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  totalSpeed: 0
   jumpForce: 7
-  doublejumpForce: 5
   moveInput: 3
+  doublejumpForce: 5
   isGrounded: 0
+  isStunned: 0
+  timingStunned: 0
 --- !u!114 &4634470281925822248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,10 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068ab232a010e2145a5d4eef5b1cced3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
+  health: 10
   healthImg: []
   sceneNumberGO: 3
-  health: 10
+  medKit: 0
 --- !u!114 &3018874191377927412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,18 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TotalPoints: 0
   Count: {fileID: 0}
---- !u!114 &5884917911599792883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327400982931143635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0878b002934c55c4ea69d0e1cd23036c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  pointsSound: {fileID: 0}
 --- !u!114 &4289410018146357624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +178,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gun: {fileID: 0}
+--- !u!114 &4040615121820683374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3327400982931143635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ee3b370b41bcf4b80d822c70b91754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
+  score: {fileID: 0}
 --- !u!1 &3875536439852456762
 GameObject:
   m_ObjectHideFlags: 0

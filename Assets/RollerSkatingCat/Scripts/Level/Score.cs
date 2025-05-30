@@ -1,13 +1,19 @@
 using UnityEngine;
 using TMPro;
 
-public class PlayerPoints : MonoBehaviour
+public class Score : MonoBehaviour, IObserver
 {
     public int TotalPoints;
     public TextMeshProUGUI Count;
     [SerializeField] private AudioClip pointsSound;
 
+    private PlayerManager subject;
 
+
+    public void Notify(Subject subject)
+    {
+        throw new System.NotImplementedException();
+    }
     // Start is called before the first frame update
     void Start()
     {

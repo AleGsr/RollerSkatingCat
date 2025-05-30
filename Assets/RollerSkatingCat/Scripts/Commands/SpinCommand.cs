@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class SpinCommand : MonoBehaviour
+public class SpinCommand : ICommand
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private PlayerController player;
+
+    public SpinCommand(PlayerController player)
     {
-        
+        this.player = player;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Execute()
     {
-        
+        player.Spin(-1);
     }
 }

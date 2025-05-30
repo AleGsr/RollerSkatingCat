@@ -6,34 +6,28 @@ public class EnemyFactory : MonoBehaviour
     public GameObject batPrefab;
     public GameObject gargoylePrefab;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Enemy CreateEnemy(EnemyType type, Vector2 position)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void CreateEnemy(string type, Vector3 position)
-    {
-        GameObject enemy = null;
+        GameObject instance = null;
 
         switch (type)
         {
-            case "Rat":
-                enemy = Instantiate(ratPrefab, position, Quaternion.identity);
+            case EnemyType.Rat:
+                instance = Instantiate(ratPrefab, position, Quaternion.identity);
                 break;
-            case "Bat":
-                enemy = Instantiate(batPrefab, position, Quaternion.identity);
+            case EnemyType.Bat:
+                instance = Instantiate(batPrefab, position, Quaternion.identity);
                 break;
-            case "Gargoyle":
-                enemy = Instantiate(gargoylePrefab, position, Quaternion.identity);
+            case EnemyType.Gargoyle:
+                instance = Instantiate(gargoylePrefab, position, Quaternion.identity);
                 break;
         }
+
+        Enemy enemy = instance.GetComponent<Enemy>();
+        enemy.Init();
+
+        return enemy;
+
     }
 
 }

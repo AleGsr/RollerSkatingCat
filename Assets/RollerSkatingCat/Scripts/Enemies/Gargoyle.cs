@@ -7,7 +7,7 @@ public class Gargoyle : Enemy
     private void Awake()
     {
         enemyName = "Gárgola";
-        health = 25;
+        maxHealth = 25;
     }
     void Start()
     {
@@ -22,7 +22,7 @@ public class Gargoyle : Enemy
 
     void Attacking()
     {
-
+        //Disparar
     }
 
 }

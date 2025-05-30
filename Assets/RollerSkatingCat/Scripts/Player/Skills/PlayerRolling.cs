@@ -1,15 +1,8 @@
 using UnityEngine;
 
-public class Rat : Enemy
+public class PlayerRolling : MonoBehaviour
 {
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    private void Awake()
-    {
-        enemyName = "Rata";
-        maxHealth = 10;
-    }
     void Start()
     {
         
@@ -20,7 +13,4 @@ public class Rat : Enemy
     {
         
     }
-
-
-
 }

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     public string enemyName;
-    public int health;
 
 
     [Header("Movement")]
@@ -21,10 +20,10 @@ public class Enemy : MonoBehaviour
     private float perseguirSpeed;
 
     [Header("Health")]
-    //public int Health;
-    //[SerializeField] HPBarUIManager hpBarUIManager;
-    [SerializeField, Min(1)] int maxHP;
-    int currentHP;
+    public float maxHealth;
+    public float currentHealth;
+
+    public Slider healthSlider;  // Asigna el Slider en el inspector o desde código
 
     float timerHpText;
     float timeHpText = 3;
@@ -33,14 +32,16 @@ public class Enemy : MonoBehaviour
     public int DamageEnemy;
 
 
-    //public GameObject Limit;
 
-    // Start is called before the first frame update
+    public virtual void Init()
+    {
+
+    }
+
     void Start()
     {
-        currentHP = maxHP;
-        //hpBarUIManager.SetMaxHP(maxHP);
-        //hpBarUIManager.SetCurrentHP(currentHP);
+        currentHealth = maxHealth;
+        UpdateHealthUI();
 
         patrolTimer = patrolTime;
         timerHpText = timeHpText;
@@ -52,9 +53,13 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Patrol();
+        TimerHPText();
         transform.Translate(movementVector * Time.deltaTime);
     }
 
+
+
+    //Move
     void Patrol()
     {
         transform.Translate(Vector2.right * (movingRight ? 1 : -1) * modifPatrolSpeed * Time.deltaTime);
@@ -75,20 +80,10 @@ public class Enemy : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.layer == 11)
-        {
-            Flip();
-            patrolTimer = patrolTime;
-        }
-    }
-
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            modifPatrolSpeed = 0;
             PlayerHealth LifePlayer = collision.gameObject.GetComponent<PlayerHealth>();
 
             if (LifePlayer != null)
@@ -96,36 +91,61 @@ public class Enemy : MonoBehaviour
                 LifePlayer.TakeDamage(DamageEnemy);
             }
         }
-        else
+
+
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.layer == 11)
         {
-            modifPatrolSpeed = patrolSpeed;
+            Flip();
+            patrolTimer = patrolTime;
         }
-    }
-    public void EnemyDamage(int enemydamage) //Recibir daño
-    {
-        //Debug.Log("EnemyGotDamage");
-        currentHP -= enemydamage;
-        //hpBarUIManager.SetCurrentHP(currentHP);
-        HpTextActive = true;
-        TimerHPText();
-        if (currentHP <= 0)
+
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-            currentHP = 0;
-            HpTextActive = false;
+            TakeDamage(5);
+        }
+
+    }
+
+
+
+    //Health
+    public void TakeDamage(float amount)
+    {
+        HpTextActive = true;
+        healthSlider.gameObject.SetActive(true);
+        timerHpText = timeHpText;
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthUI();
+
+        if (currentHealth <= 0)
+        {
             this.gameObject.SetActive(false);
         }
-
     }
 
-    public void TimerHPText()
+    void UpdateHealthUI()
     {
-        Debug.Log("Inicia Contador");
-        timerHpText -= Time.deltaTime;
-        if (timerHpText <= 0)
+        if (healthSlider != null)
         {
-            HpTextActive = false;
+            healthSlider.value = currentHealth;
         }
     }
+    void TimerHPText()
+    {
+        if (HpTextActive)
+        {
+            Debug.Log("Inicia Contador");
+            timerHpText -= Time.deltaTime;
+            if (timerHpText <= 0)
+            {
+                healthSlider.gameObject.SetActive(false);
+                HpTextActive = false;
+            }
+        }
+
+    }
+
 
 
 }

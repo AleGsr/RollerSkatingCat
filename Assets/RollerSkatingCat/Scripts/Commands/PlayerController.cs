@@ -1,23 +1,23 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("Move")]
     public float moveSpeed = 10;
     public float totalSpeed;
     public float jumpForce = 10;
 
     public float moveInput;
 
-    [Header("DobleSalto")]
+    [Header("Jump")]
     Rigidbody2D rb2D;
     public float doublejumpForce = 5;
     public bool isGrounded;
     bool DoubleJump;
 
 
-    [Header ("Stunned")]
+    [Header("Stunned")]
     public bool isStunned;
     public float timingStunned;
 
@@ -64,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
+
     //Jump
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -103,6 +105,5 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(Inmovil(timeStunned));
     }
-
 
 }

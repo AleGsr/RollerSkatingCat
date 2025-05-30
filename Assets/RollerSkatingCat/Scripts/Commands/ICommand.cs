@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class ICommand
+public interface ICommand
 {
-    
+    public interface ICommand
+    {
+        void Execute();
+    }
 }
