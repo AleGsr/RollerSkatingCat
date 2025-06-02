@@ -16,15 +16,17 @@ public class Enemy : MonoBehaviour
     public float patrolTime;
     private bool movingRight = true;
     private float patrolTimer;
-    private Vector3 movementVector;
     private float perseguirSpeed;
 
     [Header("Health")]
     public float maxHealth;
     public float currentHealth;
 
-    public Slider healthSlider;  // Asigna el Slider en el inspector o desde código
+    public Slider healthSlider;
 
+
+
+    //TimerUIHealth
     float timerHpText;
     float timeHpText = 3;
     bool HpTextActive = false;
@@ -54,7 +56,13 @@ public class Enemy : MonoBehaviour
     {
         Patrol();
         TimerHPText();
-        transform.Translate(movementVector * Time.deltaTime);
+        //transform.Translate(movementVector * Time.deltaTime);
+    }
+
+
+    public void MakeDamage(int playerHP)
+    {
+        playerHP -= DamageEnemy;
     }
 
 
@@ -80,17 +88,19 @@ public class Enemy : MonoBehaviour
         transform.localScale = localScale;
     }
 
+
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerHealth LifePlayer = collision.gameObject.GetComponent<PlayerHealth>();
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    PlayerHealth LifePlayer = collision.gameObject.GetComponent<PlayerHealth>();
 
-            if (LifePlayer != null)
-            {
-                LifePlayer.TakeDamage(DamageEnemy);
-            }
-        }
+        //    if (LifePlayer != null)
+        //    {
+        //        LifePlayer.TakeDamage();
+        //    }
+        //}
 
 
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.layer == 11)
@@ -108,7 +118,7 @@ public class Enemy : MonoBehaviour
 
 
 
-    //Health
+    //GetDamage
     public void TakeDamage(float amount)
     {
         HpTextActive = true;

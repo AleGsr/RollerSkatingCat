@@ -8,8 +8,12 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] public int health;
+    public int currentHealth;
     public int sceneNumberGO;
     public int medKit;
+
+    bool isInmune;
+    [SerializeField] float totalTime;
 
     [SerializeField] private UIPlayerHealth uiplayerHealth;
 
@@ -18,29 +22,47 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        uiplayerHealth.UpdateHealthText(health);
+        currentHealth = health;
+        //uiplayerHealth.UpdateHealthText(health);
+        isInmune = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-
-        health -= damage;
-        //CatHurt.Play();
-        uiplayerHealth.UpdateHealthText(health);
-        if (health <= 0)
+        if (!isInmune)
         {
-            health = 0;
-            SceneManager.LoadScene(sceneNumberGO);
+            currentHealth -= 10;
+            //CatHurt.Play();
+            //uiplayerHealth.UpdateHealthText(currentHealth);
+            if (currentHealth    <= 0)
+            {
+                currentHealth = 0;
+                SceneManager.LoadScene(sceneNumberGO);
+            }
         }
-
     }
 
-    public void GetMedKit(Collider2D collision)
+    public void GetMedKit()
     {
         //Health.Play();
-        health += medKit;
-        collision.gameObject.SetActive(false);
-        uiplayerHealth.UpdateHealthText(health);
+        currentHealth += medKit;
+        //collision.gameObject.SetActive(false);
+        //uiplayerHealth.UpdateHealthText(currentHealth);
     }
+
+    public void ActiveInmunity()
+    {
+        StartCoroutine(Inmune());
+    }
+    IEnumerator Inmune()
+    {
+        isInmune = true;
+        //Le avisa al UI que se active y desactive
+
+        yield return new WaitForSeconds(5);
+
+        isInmune = false;
+    }
+
 
 }

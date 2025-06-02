@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Subject : MonoBehaviour
+public abstract class Subject : MonoBehaviour
 {
     private readonly List<IObserver> observers = new();
 
@@ -10,10 +10,10 @@ public class Subject : MonoBehaviour
 
     public void RemoveObserver(IObserver observer) => observers.Remove(observer);
 
-    public void NotifyObservers()
+    public void NotifyObservers(string eventName)
     {
         foreach (IObserver observer in observers)
-            observer.Notify(this);
+            observer.Notify(this, eventName);
     }
 
 

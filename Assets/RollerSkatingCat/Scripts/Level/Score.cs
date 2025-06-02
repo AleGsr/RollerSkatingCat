@@ -1,20 +1,12 @@
 using UnityEngine;
-using TMPro;
 
-public class Score : MonoBehaviour, IObserver
+public class Score : MonoBehaviour
 {
-    public int TotalPoints;
-    public TextMeshProUGUI Count;
-    [SerializeField] private AudioClip pointsSound;
+    public int currentPoints;
+    //[SerializeField] private AudioClip pointsSound;
 
     private PlayerManager subject;
 
-
-    public void Notify(Subject subject)
-    {
-        throw new System.NotImplementedException();
-    }
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -26,16 +18,10 @@ public class Score : MonoBehaviour, IObserver
 
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void UpdatePoints()
     {
-        if (collision.CompareTag("Point"))
-        {
+        currentPoints++;
+        //AudioManager.Instance.PlaySound(pointsSound);
 
-            TotalPoints++;
-            AudioManager.Instance.PlaySound(pointsSound);
-            collision.gameObject.SetActive(false);
-            Count.text = "" + TotalPoints;
-        }
     }
-
 }

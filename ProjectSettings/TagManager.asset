@@ -10,6 +10,11 @@ TagManager:
   - Health
   - Point
   - Bullet
+  - SKBoost
+  - Enemy
+  - RatTrap
+  - Box
+  - Oil
   layers:
   - Default
   - TransparentFX

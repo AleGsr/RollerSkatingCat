@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d2eb3d5e21cbb604e95543388a6b1117
+guid: aca632a4916893e4bb1e2bd9a0fdbbfd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4069689885670610656
-    second: d80aed259bca6a2ab159170b4ac3545f-dibujos-animados-de-murcielago-negro_0
+      213: 8031841115881805355
+    second: Bat 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: d80aed259bca6a2ab159170b4ac3545f-dibujos-animados-de-murcielago-negro_0
+      name: Bat 1_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 119
-        width: 472
-        height: 275
+        x: 2
+        y: 5
+        width: 1613
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0296a927c9e8587c0800000000000000
-      internalID: -4069689885670610656
+      spriteID: b26138cb0f4d67f60800000000000000
+      internalID: 8031841115881805355
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      d80aed259bca6a2ab159170b4ac3545f-dibujos-animados-de-murcielago-negro_0: -4069689885670610656
+      Bat 1_0: 8031841115881805355
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

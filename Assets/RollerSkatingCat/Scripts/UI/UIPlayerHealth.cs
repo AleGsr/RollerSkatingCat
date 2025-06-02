@@ -8,14 +8,29 @@ public class UIPlayerHealth : MonoBehaviour, IObserver
     private PlayerManager subject;
     
 
-    public void Notify(Subject subject)
+    public void Notify(Subject subject, string eventName)
     {
-        throw new System.NotImplementedException();
+        if (this.subject == null)
+        {
+            this.subject = subject as PlayerManager;
+        }
+
+        //UpdateHealthText(this.subject.playerHealth.currentHealth);
+
+        switch (eventName)
+        {
+            case "Get Damaged":
+            case "Get Healed":
+                UpdateHealthText(this.subject.playerHealth.currentHealth);
+                break;
+        }
+
     }
 
     public void UpdateHealthText(int health)
     {
-        if (health >= 100)
+        
+        if (health >= 50)
         {
             healthImg[hpIndex].SetActive(true);
             healthImg[hpIndex + 1].SetActive(true);
@@ -23,7 +38,7 @@ public class UIPlayerHealth : MonoBehaviour, IObserver
             healthImg[hpIndex + 3].SetActive(true);
             healthImg[hpIndex + 4].SetActive(true);
         }
-        else if (health <= 80)
+        if (health <= 40)
         {
             healthImg[hpIndex].SetActive(true);
             healthImg[hpIndex + 1].SetActive(true);
@@ -31,7 +46,7 @@ public class UIPlayerHealth : MonoBehaviour, IObserver
             healthImg[hpIndex + 3].SetActive(true);
             healthImg[hpIndex + 4].SetActive(false);
         }
-        else if (health <= 60)
+        if (health <= 30)
         {
             healthImg[hpIndex].SetActive(true);
             healthImg[hpIndex + 1].SetActive(true);
@@ -39,7 +54,7 @@ public class UIPlayerHealth : MonoBehaviour, IObserver
             healthImg[hpIndex + 3].SetActive(false);
             healthImg[hpIndex + 4].SetActive(false);
         }
-        else if (health <= 40)
+        if (health <= 20)
         {
             healthImg[hpIndex].SetActive(true);
             healthImg[hpIndex + 1].SetActive(true);
@@ -47,7 +62,7 @@ public class UIPlayerHealth : MonoBehaviour, IObserver
             healthImg[hpIndex + 3].SetActive(false);
             healthImg[hpIndex + 4].SetActive(false);
         }
-        else if (health <= 20)
+        if (health <= 10)
         {
             healthImg[hpIndex].SetActive(true);
             healthImg[hpIndex + 1].SetActive(false);
@@ -55,9 +70,11 @@ public class UIPlayerHealth : MonoBehaviour, IObserver
             healthImg[hpIndex + 3].SetActive(false);
             healthImg[hpIndex + 4].SetActive(false);
         }
-        if (health >= 100)
+
+
+        if (health >= 50)
         {
-            health = 100;
+            health = 50;
         }
     }
 

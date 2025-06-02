@@ -10,8 +10,8 @@ public class SpinCommand : ICommand
         this.player = player;
     }
 
-    public void Execute()
-    {
-        player.Spin(-1);
-    }
+    //public void Execute()
+    //{
+    //    //player.Spin(-1);
+    //}
 }

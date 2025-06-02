@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class SwipeAttack : MonoBehaviour
 {
-    [SerializeField] int damageSwipe;
+    [SerializeField] int damageSwipe = 10;
 
     public void SwipeAttacking(int enemyHealth )
     {
-        //Quitarle vida al enemigo
         enemyHealth =- damageSwipe;
 
     }

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fondo-transparente-pared-ladrillo-rojo_1284-53555_0: 4454842990060845816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
