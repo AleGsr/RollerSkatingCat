@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973e4d9e9f98010479d1b1fb33f119f5, type: 3}
+  m_Name: CollectibleConfig
+  m_EditorClassIdentifier: 
+  fishCount: 30
+  heartCount: 6
+  skateCount: 9
+  startPosition: {x: -7, y: -1.5}
+  endPosition: {x: 143, y: 15}
+  fishPrefab: {fileID: 3099036073666704838, guid: d876ce0c689009d418d72ac74a0f1798, type: 3}
+  heartPrefab: {fileID: 3079931981951530464, guid: 3eaa9151632658841ba34e19285fd00b, type: 3}
+  skatePrefab: {fileID: 8275249267784356999, guid: cc52a2dba00ef534db3f52049bb66163, type: 3}
+  upwardOffsetIfNearGround: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64

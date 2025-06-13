@@ -1,15 +1,24 @@
 using UnityEngine;
-
+using System.Collections;
 public class MeowAttack : MonoBehaviour
 {
     private PlayerHealth playerHealth;
+    [SerializeField] GameObject meow;
 
-    public void MeowAttacking()
+    public void MeowAttacking() //Se manda a llamar el comando
     {
-        playerHealth.ActiveInmunity();
-        //Bajarle momentaneamente la velocidad al enemigo
-        //Hacer que no pueda realizar daño
+
+        StartCoroutine(MeowActive());
+
     }
 
+
+
+    IEnumerator MeowActive()
+    {
+        meow.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        meow.gameObject.SetActive(false);
+    }
 
 }

@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] public int health;
-    public int currentHealth;
-    public int sceneNumberGO;
-    public int medKit;
+    [SerializeField] public int currentHealth;
+    [SerializeField] public int sceneNumberGO;
+    [SerializeField] public int medKit;
 
     bool isInmune;
     [SerializeField] float totalTime;

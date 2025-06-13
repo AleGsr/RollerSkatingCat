@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class MeowCommand : MonoBehaviour
+public class MeowCommand : ICommand
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private PlayerManager player;
+
+    public MeowCommand(PlayerManager player)
     {
-        
+        this.player = player;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Execute()
     {
-        
+        player.Meow();
     }
 }

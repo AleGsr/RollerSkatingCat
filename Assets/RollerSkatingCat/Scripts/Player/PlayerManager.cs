@@ -4,17 +4,17 @@ using System.Collections;
 public class PlayerManager : Subject
 {
     [Header("Movement")]
-    public float moveSpeed = 10;
-    public float totalSpeed;
-    public float jumpForce = 10;
+    [SerializeField] private float moveSpeed = 10;
+    [SerializeField] private float jumpForce = 10;
+    [SerializeField] private float doublejumpForce = 5;
+   
+    private float totalSpeed;
+    private float moveInput; 
+    private bool isGrounded;
+    private bool DoubleJump;
 
-    public float moveInput;
-
-    [Header("DobleSalto")]
-    public float doublejumpForce = 5;
-    public bool isGrounded;
-    bool DoubleJump;
-
+    bool isStunned = true;
+    bool isInmovil = true;
 
     [Header("UI")]
     [SerializeField] private UIPlayerHealth uiPlayerHealth;
@@ -25,13 +25,10 @@ public class PlayerManager : Subject
 
     //References
     Rigidbody2D rb2D;
-    public PlayerHealth playerHealth;
-    public Score score;
+    [SerializeField] public PlayerHealth playerHealth;
+    [SerializeField] public Score score;
 
 
-
-    bool isStunned = true;
-    bool isInmovil = true;
 
     // Start is called before the first frame update
     void Start()
@@ -43,15 +40,12 @@ public class PlayerManager : Subject
     // Update is called once per frame
     void Update()
     {
-        Move();
         Jump();
-
     }
 
     private void OnEnable()
     {
         AddObserver(uiPlayerHealth);
-        //AddObserver(uiBoost);
         AddObserver(uiScore);
         AddObserver(uiStunned);
         AddObserver(uiInmovil);
@@ -100,9 +94,8 @@ public class PlayerManager : Subject
 
     public void Jump()
     {
-        if (Input.GetKeyDown("w") || Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("w"))
         {
-            //Debug.Log("Getting key down: W");
             rb2D.linearVelocity = Vector2.zero;
             if (isGrounded)
             {
@@ -137,6 +130,38 @@ public class PlayerManager : Subject
             IsInmovilized();
         }
     }
+
+
+    public void Shoot()
+    {
+        this.gameObject.GetComponent<PlayerGun>().Shoot();
+    }
+
+
+    public void Attack()
+    {
+        Debug.Log("Attack");
+    }
+
+
+    public void Spin()
+    {
+        Debug.Log("Spin");
+    }
+
+    public void Meow()
+    {
+        this.gameObject.GetComponent<MeowAttack>().MeowAttacking();
+    }
+
+    public void Boost()
+    {
+        this.gameObject.GetComponent<SkatesBoost>().ActiveBoostSkates();
+    }
+
+
+
+
 
 
     //Stun

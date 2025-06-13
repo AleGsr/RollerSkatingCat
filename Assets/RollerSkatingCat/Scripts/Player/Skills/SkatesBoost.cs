@@ -15,20 +15,16 @@ public class SkatesBoost : MonoBehaviour
 
     public void Update()
     {
-        ActiveBoostSkates();
     }
     public void ActiveBoostSkates()
     {
         if (boostCount >= 3)     
-        { 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                uiBoost.ShowUIBoost();
-                this.gameObject.GetComponent<PlayerHealth>().ActiveInmunity();
-                this.gameObject.GetComponent<PlayerManager>().AddSpeed();
-                boostCount = 0;
-                countBoost.text = "" + boostCount;
-            }
+        {
+            uiBoost.ShowUIBoost();
+            this.gameObject.GetComponent<PlayerHealth>().ActiveInmunity();
+            this.gameObject.GetComponent<PlayerManager>().AddSpeed();
+            boostCount = 0;
+            countBoost.text = "" + boostCount;
         }
     }
 

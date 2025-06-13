@@ -14,15 +14,12 @@ public class PlayerGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shoot();
+        
     }
 
     public void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject bullet = BulletPool.Instance.RequestBullet(); //Instancia de la bala ya activada
-            bullet.transform.position = Gun.transform.position; //Ubicación en la que se crea
-        }
+        GameObject bullet = BulletPool.Instance.RequestBullet(); //Instancia de la bala ya activada
+        bullet.transform.position = Gun.transform.position; //Ubicación en la que se crea
     }
 }

@@ -3,15 +3,15 @@ using UnityEngine;
 public class SpinCommand : ICommand
 {
 
-    private PlayerController player;
+    private PlayerManager player;
 
-    public SpinCommand(PlayerController player)
+    public SpinCommand(PlayerManager player)
     {
         this.player = player;
     }
 
-    //public void Execute()
-    //{
-    //    //player.Spin(-1);
-    //}
+    public void Execute()
+    {
+        player.Spin();
+    }
 }

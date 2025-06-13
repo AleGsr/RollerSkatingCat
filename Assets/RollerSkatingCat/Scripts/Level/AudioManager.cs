@@ -1,31 +1,46 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class SceneMusic
+{
+    public string sceneName;
+    public AudioClip musicClip;
+}
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource sfxAudioSource, musicAudioSource;
+    [SerializeField] private AudioSource sfxAudioSource;
+    [SerializeField] private AudioSource musicAudioSource;
+    [SerializeField] private SceneMusic[] sceneMusicList;
 
-    public static AudioManager Instance { get; private set; } //La instancia actúa como una referencia, {} solo puede ser leida en otros scripts y seteada en este script y no en otro
-
+    public static AudioManager Instance { get; private set; }
 
     private void Awake()
     {
-        //Se asegura que solo haya un AudioManager, en caso de haber otro se va a destruir
-        if(Instance != null && Instance != this)
+        // Singleton pattern para que no se duplique
+        if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this); //Solo si necesita para cambios de escena
+            DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // Escucha cambios de escena
         }
+    }
+
+    private void OnDestroy()
+    {
+        // Evita que quede suscrito si el objeto se destruye
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M)) ToggleMusic();
     }
-
 
     public void PlaySound(AudioClip clip)
     {
@@ -36,5 +51,21 @@ public class AudioManager : MonoBehaviour
     {
         musicAudioSource.mute = !musicAudioSource.mute;
     }
-    
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        foreach (var sceneMusic in sceneMusicList)
+        {
+            if (sceneMusic.sceneName == scene.name)
+            {
+                musicAudioSource.clip = sceneMusic.musicClip;
+                musicAudioSource.loop = true;
+                musicAudioSource.Play();
+                return;
+            }
+        }
+
+        // Si no hay música asignada para la escena actual, se detiene
+        musicAudioSource.Stop();
+    }
 }

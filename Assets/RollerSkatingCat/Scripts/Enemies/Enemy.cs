@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     bool HpTextActive = false;
 
     public int DamageEnemy;
+    int currentDamage;
 
 
 
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
         patrolTimer = patrolTime;
         timerHpText = timeHpText;
         modifPatrolSpeed = patrolSpeed;
+        currentDamage = DamageEnemy;
 
     }
 
@@ -62,7 +64,7 @@ public class Enemy : MonoBehaviour
 
     public void MakeDamage(int playerHP)
     {
-        playerHP -= DamageEnemy;
+        playerHP -= currentDamage;
     }
 
 
@@ -145,7 +147,6 @@ public class Enemy : MonoBehaviour
     {
         if (HpTextActive)
         {
-            Debug.Log("Inicia Contador");
             timerHpText -= Time.deltaTime;
             if (timerHpText <= 0)
             {
@@ -156,6 +157,20 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void EnemyStun()
+    {
+        StartCoroutine(StunActive());
+    }
 
+    IEnumerator StunActive()
+    {
+        modifPatrolSpeed = 0;
+        currentDamage = 0;
+
+        yield return new WaitForSeconds(5);
+
+        modifPatrolSpeed = patrolSpeed;
+        currentDamage = DamageEnemy;
+    }
 
 }
